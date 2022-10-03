@@ -22,7 +22,8 @@ public static void main(String[] args) {
 		if(inp.charAt(i)==' ') {i+=1;}//to eliminate space
 		seperate+=inp.charAt(i);
 		ans=check(seperate);
-		if(inp.charAt(i)=='i'&&inp.charAt(i+1)=='c'&&ans==1)//to make recheck in i and ice 
+		if(inp.charAt(i)=='i'&&inp.charAt(i+1)=='c'&&inp.charAt(i+2)=='e'&&ans==1)
+			//to make recheck in i and ice 
 		{seperate="i";start=i+1;end+=i+2;}
 		else if(ans==1)//to remove founded words 
 		{seperate="";start=i+1;end+=i+2;}
