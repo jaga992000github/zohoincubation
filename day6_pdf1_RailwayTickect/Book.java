@@ -31,7 +31,8 @@ class Book {
 		
 	
 	String[] waitingbook(String[]wait,int persons) { 
-			{int waitbook=check.BalenceWaitSeatCount(wait);
+		System.out.println("Waiting list");	
+		{int waitbook=check.BalenceWaitSeatCount(wait);
 			int bookedseats=wait.length-waitbook;
 			if(waitbook>=persons){
 				PersonDetails pd=new PersonDetails();

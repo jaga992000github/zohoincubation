@@ -7,11 +7,11 @@ public class PersonDetails {
 	String gender;
 	
 	void scan(int k) {
-		System.out.print("\nEnter the available person("+k+") Name: ");
+		System.out.print("\nEnter the person("+k+") Name: ");
 		name=scan.next().trim();
-		System.out.print("\nEnter the available person("+k+") Age: ");
+		System.out.print("\nEnter the person("+k+") Age: ");
 		age =scan.nextInt();
-		System.out.print("\nEnter the available person("+k+") Gender: ");
+		System.out.print("\nEnter the person("+k+") Gender: ");
 		gender=scan.next().trim();}
 	
 	void print(int k) {

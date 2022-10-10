@@ -63,12 +63,12 @@ class Main {
 	Check check =new Check();
 	int confirmseats=0;
 	confirmseats=check.BalenceConfirmSeatCount(Tickets);
-	System.out.println("\n\nAvailable Seats: "+confirmseats);
+	int waitavail=check.BalenceWaitSeatCount(wait);
+	System.out.println("\n\nAvailable Seats: "+confirmseats+"\nAvailable waiting list "+waitavail);
 	
-	System.out.print("Enter how many ticket you want");
+	System.out.print("Enter how many ticket you want: ");
 	int persons=scan.nextInt();
 	int waitingseats=persons-confirmseats;
-	int waitavail=check.BalenceWaitSeatCount(wait);
 	if (confirmseats>=persons) {
 	Book book=new Book();
 	book.confirmbook(Tickets,persons);
