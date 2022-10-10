@@ -49,7 +49,7 @@ class Main {
 			{"[49]","[______]","[48]","[47]","[46]"},
 			{"[50]","[______]","[51]","[52]","[53]"},
 			{"[57]","[______]","[56]","[55]","[54]"},
-			{"[58]","[______]","59","60","[61]"},
+			{"[58]","[______]","[59]","[60]","61"},
 			{"[62]","[______]","[_L]","[_M]","[_U]"},
 			{"[63]","[______]","[_A]","[_M]","[_W]"}
 			};
@@ -57,7 +57,7 @@ class Main {
 		
 		String[] wait= {"[1]","[2]","[3]","[4]","[5]",
 						"[6]","[7]","[8]","9","10"};
-	int PNR_NO=000000001;
+	int PNR_NO=100000001;
 	while(true) {	
 	ShowSeats(Tickets);
 	Check check =new Check();
@@ -71,7 +71,8 @@ class Main {
 	int waitavail=check.BalenceWaitSeatCount(wait);
 	if (confirmseats>=persons) {
 	Book book=new Book();
-	book.confirmbook(Tickets,persons);}
+	book.confirmbook(Tickets,persons);
+	System.out.println("your PNR NO is "+PNR_NO+"\n");}
 	
 	else if( waitavail>=waitingseats) {System.out.println("there is only "+confirmseats+" confirmseats available"
 			+ "\nif you want to proceed balence "+waitingseats+" with waitinglist "
@@ -83,16 +84,19 @@ class Main {
 		if(confirmseats>0) {
 			book.confirmbook(Tickets,(confirmseats));}
 			book.waitingbook(wait,waitingseats);
-	break;}
-	else if(n==2) {System.out.print("Thank you");break;}
-	else {System.out.println("please press 1 or 2 only");}
+			System.out.println("your PNR NO is "+PNR_NO+"\n");
+			break;}
+		else if(n==2) {System.out.print("Thank you");break;}
+		else {System.out.println("please press 1 or 2 only");}
 	}}
-	else {System.out.println("there is no available tickets for "+waitingseats+" waiting seats");}
+	else {int n =check.BalenceWaitSeatCount(wait);
+	System.out.println("there is only "+n+" waiting seats available");}
 	
 	System.out.println("if you want to quit the website press 0 "
 			+ "\nor want to continue press any number");
-	System.out.print(PNR_NO);
+	
 	int inp=scan.nextInt();
+	PNR_NO+=1;
 	if(inp==0) {break;}
 	}
 	}
