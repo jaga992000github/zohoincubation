@@ -1,19 +1,21 @@
 package day6_pdf1_RailwayTickect;
 import java.util.*;
-class Book {
+class Book extends PersonDetails {
 	Check check=new Check();
 	Scanner scan =new Scanner(System.in);
+	public String s;
 	void confirmbook(String[][] Tickets,int persons) {
 		int availseat=check.BalenceConfirmSeatCount(Tickets);
-		PersonDetails pd=new PersonDetails();
 		if(availseat>=persons) {
 			for(int k=1;k<=persons;k++) {
-			pd.scan(k);
-			if(pd.age>5) {
+			scan(k);
+			if(age>5) {
 			System.out.print("\nEnter the available person("+k+") seat No: ");
-			String s=scan.next();
+			s=scan.next();
 			s.trim();
-			
+			//int pnrno=pd.pnrno;
+			//PDdata[pnrno][k-1].seatNo=s;
+			PD[pnrno][k-1][3]=s;
 			for(int i=0;i<Tickets.length;i++) {
 				for(int j=0;j<Tickets[0].length;j++) {
 					if(("["+s+"]").equals(Tickets[i][j]))
@@ -22,15 +24,17 @@ class Book {
 						Tickets[i][j]="["+Tickets[i][j]+"]";
 						break;}
 					}}
-			System.out.println("person("+k+") seatno: "+s);}
-			pd.print(k);}
+			
+			//System.out.println("person("+k+") seatno: "+PDdata[pnrno][k-1].seatNo);}
+			System.out.println("person("+k+") seatno: "+PD[pnrno][k-1][3]);}
+			print(k);}
 			System.out.println("\nyour seats  has been booked in confirm!!\n\n");
 			
 			}
 	}
 		
 	
-	String[] waitingbook(String[]wait,int persons) { 
+	String[] waitingbook(String[] wait,int persons) { 
 		System.out.println("Waiting list");	
 		{int waitbook=check.BalenceWaitSeatCount(wait);
 			int bookedseats=wait.length-waitbook;
@@ -45,7 +49,7 @@ class Book {
 				}}
 				System.out.println("person("+k+") waiting list no "+(bookedseats+1));}
 				pd.print(k);}
-				System.out.println("\nyour "+persons+" seats has been booked in waiting list");}
+				System.out.println("\nyour "+persons+" seats has been booked in waiting list no"+(waitbook+1));}
 			else{System.out.println("only "+waitbook+" waiting list are available\ntry after some time");}}
 		return wait;
 	}

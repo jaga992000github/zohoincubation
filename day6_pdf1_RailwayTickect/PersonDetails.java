@@ -1,22 +1,53 @@
 package day6_pdf1_RailwayTickect;
 import java.util.*;
-public class PersonDetails {
+public class PersonDetails extends Main{
 	Scanner scan=new Scanner(System.in);
+	Main m=new Main();
+	int pnrno=m.PNR_NO-1;
 	String name;
 	int age;
+	String AGE;
 	String gender;
+	String seatNo;
 	
-	void scan(int k) {
+	/*public PersonDetails(String name,int age,String gender,String seatNo)
+	{
+		this.name=name;
+		this.age=age;
+		this.gender=gender;
+		this.seatNo=seatNo;
+	}
+	
+	public PersonDetails() {
+		
+	}*/
+
+	void scan(int k) {		
+				
 		System.out.print("\nEnter the person("+k+") Name: ");
 		name=scan.next().trim();
+		PD[pnrno][k-1][0]=name;
 		System.out.print("\nEnter the person("+k+") Age: ");
 		age =scan.nextInt();
+		AGE=String.valueOf(age);
+		PD[pnrno][k-1][1]=AGE;
 		System.out.print("\nEnter the person("+k+") Gender: ");
-		gender=scan.next().trim();}
+		gender=scan.next().trim();
+		PD[pnrno][k-1][2]=gender;
+		
+		//PersonDetails pd = new PersonDetails(name,age,gender,seatNo);
+		//int j=k-1;
+		//PDdata[pnrno][j]=pd;
+		
+	}
 	
 	void print(int k) {
-		System.out.println("person("+k+") name :"+name);
-		System.out.println("person("+k+") Age :"+age);
-		System.out.println("person("+k+") Gender :"+gender);
+		int j=k-1;
+		System.out.println("person("+k+") name :"+PD[pnrno][j][0]);//PDdata[pnrno][j].name);
+		System.out.println("person("+k+") Age :"+PD[pnrno][j][1]);//PDdata[pnrno][j].age);
+		System.out.println("person("+k+") Gender :"+PD[pnrno][j][2]);//PDdata[pnrno][j].gender);
+		
 	}
+	//PersonDetails PDdata [][] =new PersonDetails[63][63];
+	
 }
