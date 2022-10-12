@@ -49,5 +49,18 @@ public class PersonDetails extends Main{
 		
 	}
 	//PersonDetails PDdata [][] =new PersonDetails[63][63];
-	
+	void PrintTickets() {
+		int PNR=1;
+		for(int i=0;i<20;i++) {
+			System.out.println("PNR NO "+PNR);
+			for(int j=0;j<PD[0].length;j++) {
+				if(PD[i][j][0]==null) {break;}
+					System.out.println("\nName: "+PD[i][j][0]);
+					System.out.println("Age: "+PD[i][j][1]);
+					System.out.println("Gender: "+PD[i][j][2]);
+					System.out.println("Ticket: "+PD[i][j][3]+"\n");
+			}System.out.println("_____________________________");
+			PNR+=1;
+		}
+	}
 }

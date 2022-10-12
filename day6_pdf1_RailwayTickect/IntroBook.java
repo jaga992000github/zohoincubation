@@ -24,7 +24,7 @@ public class IntroBook {
 		Book book=new Book();
 		if(confirmseats>0) {
 			book.confirmbook(Tickets,(confirmseats));}
-			book.waitingbook(wait,waitingseats);
+			book.waitingbook(wait,waitingseats,persons);
 			System.out.println("your PNR NO is "+PNR_NO+"\n");
 			break;}
 		else if(n==2) {System.out.print("Thank you");break;}
