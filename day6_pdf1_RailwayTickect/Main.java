@@ -3,20 +3,7 @@ import java.util.*;
 class Main {
 	static int PNR_NO;
 	static String[][][] PD=new String[63][63][4];
-	static String[][] Tickets=new String[18][4];
-	static String[] wait=new String[10];
-	
-	static void ShowSeats(String[][] Tickets) {
-		for(int i=0;i<Tickets.length;i++) {
-			for(int j=0;j<Tickets[0].length;j++) {
-				System.out.print(Tickets[i][j]+" ");
-			}System.out.println();
-			if(i%2==0) {System.out.println();}
-		}
-	}
-	static Scanner scan =new Scanner(System.in);
-	public static void main(String[] args) {
-		String[][] Tickets=
+	static String[][]Tickets=
 			/*{
 			{"01","[______]","[__]","[__]","[__]"},
 			{"02","[______]","03","04","05"},
@@ -57,17 +44,29 @@ class Main {
 			{"[62]","[______]","[_L]","[_M]","[_U]"},
 			{"[63]","[______]","[_A]","[_M]","[_W]"}
 			};
+	static String[] wait= {"[1]","[2]","[3]","[4]","[5]",
+			"[6]","[7]","8","9","10"};
 	
-		
-	String[] wait= {"[1]","[2]","[3]","[4]","[5]",
-						"[6]","[7]","8","9","10"};
-	
-	
-
-		
+	static void ShowSeats(String[][] Tickets,String[]wait) {
+		System.out.println("Confirm seats \n");
+		for(int i=0;i<Tickets.length;i++) {
+			for(int j=0;j<Tickets[0].length;j++) {
+				System.out.print(Tickets[i][j]+" ");
+			}System.out.println();
+			if(i%2==0) {System.out.println();}
+		}
+		System.out.print("\n\nWaiting List");
+		System.out.println("\n");
+		for(int i=0;i<wait.length;i++) {
+			System.out.print(wait[i]+" ");
+			if(i==4) {System.out.println();}
+		}
+	}
+	static Scanner scan =new Scanner(System.in);
+	public static void main(String[] args) {
 	PNR_NO=1;
 	while(true) {	
-	ShowSeats(Tickets);
+	ShowSeats(Tickets,wait);
 	Check check =new Check();
 	int confirmseats=0;
 	confirmseats=check.BalenceConfirmSeatCount(Tickets);
