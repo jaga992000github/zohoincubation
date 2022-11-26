@@ -1,0 +1,87 @@
+@charset "UTF-8";
+body {
+  background-color:#FFB6C1;
+  align-items:center;
+  
+  }
+div{
+  position: relative;
+  left: 500px;
+  top:150px;
+  align:center;
+}
+p{
+	font-size:24px;
+}
+.myinput-input{
+  font-family: times new roman;
+  background:#FFE4E1;
+  color:black;
+  width:150px;
+  height:20px;
+  border:2px solid BLACK;
+  border-radius:10px;
+  text-align:center;
+  font-size:20px;
+  transition:height 1s;
+  transition:width 0.7s;
+  
+}
+.myinput-input:hover{
+	height:35px;
+	width:200px;
+	font-size:24px;
+    box-shadow: 5px 5px 20px black;
+    background:white
+    
+}
+.myinput-input:active{
+	height:35px;
+	width:200px;
+	font-size:24px;
+	border:2px solid BLACK;
+	background:white
+} 
+
+.mylabel-label{
+	font-family: times new roman;
+	text-align:center;
+	font-size:28px;
+	align:center;
+}
+.submit-button{
+	margin-top:20px;
+	margin-left:90px;
+	font-size:18px;
+	border-radius:20px;
+	padding:10px 15px;
+	background-color:#E9967A;
+	cursor:pointer;
+	transition:padding 0.5s;
+	align:center;
+}
+.submit-button:hover{
+	box-shadow: 5px 5px 20px black;
+	padding:15px 15px;
+	background-color:#FFA07A;
+}
+.submit-button:active{
+	background-color:#FFA07A;
+}
+.register-button{
+	margin-top:7px;
+	font-size:18px;
+	border-radius:20px;
+	padding:10px 15px;
+	background-color:#E9967A;
+	cursor:pointer;
+	transition:padding 0.5s;
+}
+.register-button:hover{
+	box-shadow: 5px 5px 20px black;
+	padding:15px 15px;
+	background-color:#FFA07A;
+}
+.register-button:active{
+	background-color:#FFA07A;
+}
