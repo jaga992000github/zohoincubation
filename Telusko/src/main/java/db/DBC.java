@@ -83,10 +83,21 @@ public class DBC {
 		System.out.println(name);
 		return name;
 	}
-	
+	public static int GetId(String Table,String email) throws ClassNotFoundException, SQLException {
+		connect();
+		String query="select id from "+Table+" WHERE email='"+email+"';";
+		rs=st.executeQuery(query);
+		rs.next();
+		int id=rs.getInt(1);
+		return id;
+	}
 	public static void main(String[] args) throws SQLException, ClassNotFoundException {
 		connect();
-		System.out.println(getColumnNameByIndex("buyers",1));
+		String query="select id from sellers WHERE email='ben@b';";
+		rs=st.executeQuery(query);
+		rs.next();
+		int id=rs.getInt(1);
+		System.out.println(id);
 	}
 }
 

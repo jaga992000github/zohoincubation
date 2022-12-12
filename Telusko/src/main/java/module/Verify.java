@@ -1,7 +1,6 @@
 package module;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
@@ -11,7 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import db.*;
+
+import db.DBC;
 /**
  * Servlet implementation class Verify
  */
@@ -31,7 +31,7 @@ public class Verify extends HttpServlet {
 		if(dbc.authenticate(Table, email, pass)&&email!="") {
 			System.out.println("verified");
 			session.setAttribute("email",email );
-			response.sendRedirect("loged "+Table+".jsp");
+			response.sendRedirect("loged_"+Table+".jsp");
 		}else {
 			RequestDispatcher rd = request.getRequestDispatcher("/login.html");
 			rd.forward(request, response);

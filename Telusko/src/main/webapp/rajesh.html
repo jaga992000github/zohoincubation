@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src ="JavaScript/jquery.min.js"></script>
+<script>
+function call(){
+	$.ajax({
+	    url: 'Rajesh',
+	    dataType: 'json',
+	    type: 'POST',
+	    contentType: 'application/json',
+	    data: JSON.stringify( { firstname : "Rajesh" } ),
+	    success: function( response ){
+	       alert(JSON.stringify(response));
+	    },
+	    error: function( jqXhr, textStatus, errorThrown ){
+	    }
+	});
+}
+</script>
+</head>
+<body>
+<button onclick="call()"> see</button>
+</body>
+</html>
