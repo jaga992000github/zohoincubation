@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src ="JavaScript/jquery.min.js"></script>
+<script>
+
+
+function sendJsonToJava(){
+let obj={"firstname" : "jaga" };
+	$.ajax({
+	    url: 'JsonTest',
+	    dataType: 'json',
+	    type: 'POST',
+	    contentType: 'application/json',
+	    data: JSON.stringify( obj),
+	    success: function( response ){
+	    },
+	    error: function( jqXhr, textStatus, errorThrown ){
+	    }
+	});
+}
+var res;
+function receiveJsonFromJava(){
+	$.ajax({
+	    url: 'JsonTest',
+	    dataType: 'json',
+	    type: 'GET',
+	    contentType: 'application/json',
+	    success: function( response ){
+	     alert(JSON.stringify(response));
+	     res=response;
+	    },
+	    error: function( jqXhr, textStatus, errorThrown ){
+	    }
+	});
+}
+</script>
+</head>
+<body>
+<button onclick="sendJsonToJava()">send json</button>
+<button onclick="receiveJsonFromJava()">receive json</button>
+</body>
+</html>

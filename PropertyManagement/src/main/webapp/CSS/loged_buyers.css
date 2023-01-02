@@ -1,0 +1,58 @@
+@charset "UTF-8";
+ul{
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+.navigate-li{
+	 float: left;
+    overflow: hidden;
+    display: block;
+    text-align: center;
+}
+
+.libutton-button{
+    color: white;
+    font-size:  24px;
+    background-color: #333;
+    border-width: 0px  ;
+    padding: 20px; 
+   
+  }
+.libutton-button:hover{
+    background-color: #111;
+  }
+.actlibutton-button{
+  color:#333;
+  font-size:  24px;
+  background-color :white;
+  border-width: 0px  ;
+  padding: 20px;
+}
+.active_proptype-button{
+color: white;
+background-color :black;
+}
+.deactive_proptype-button{
+  color: black;
+  background-color: white;
+}
+.addprop-position{
+  position: absolute;
+  left: 500px;
+  top: 150px;
+}
+.logout-button{
+	color: white;
+    font-size:  24px;
+    background-color:#F7340A;
+    border-width: 0px  ;
+    padding: 20px;
+}
+.logout-li{
+	float: right !important;
+	overflow: hidden;
+    display: block;
+    text-align: center;
+}
