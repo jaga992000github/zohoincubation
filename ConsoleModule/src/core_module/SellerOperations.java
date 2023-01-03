@@ -15,8 +15,8 @@ public class SellerOperations implements Operations {
 	@Override
 	public void operate() throws ClassNotFoundException, SQLException {
 		table="sellers";
-		//id=Login.id;
-		id=9;
+		id=Login.id;
+		//id=9;
 		String num="";int n=0;
 		while(true) {
 			System.out.println("1->View/Edit Profile"
@@ -141,9 +141,17 @@ public class SellerOperations implements Operations {
 		
 			if(n==1) {
 				if(table.equals("land")) {
-					sodb.readLand(id);		
+					if(sodb.getPropertyIDs(table,id).size()==0) {
+						System.out.println("There is no Land Exists please add");
+						break;
+					}
+					sodb.readLand(id);
 				}
 				else {
+					if(sodb.getPropertyIDs(table,id).size()==0) {
+						System.out.println("There is no House Exists please add");
+						break;
+					}
 					sodb.readHouse(id);
 				}
 			}	
@@ -153,8 +161,18 @@ public class SellerOperations implements Operations {
 					sodb.readLand(id);}
 				else {
 					sodb.readHouse(id);}
-				System.out.println("Select Property ID");
-				int prop_id =scan.nextInt();
+				int prop_id=0;
+				while(true) {
+					System.out.println("Select Property ID");
+					prop_id =scan.nextInt();
+					if(sodb.getPropertyIDs(table,id).contains(prop_id)) {
+						break;
+					}
+					else {
+						System.out.println("please enter given property ID only");
+					}
+				}
+				
 				while(true) {
 					ArrayList details=new ArrayList<>();
 					int i=0;
@@ -335,6 +353,7 @@ public class SellerOperations implements Operations {
 	}
 	private  void addHouse() throws ClassNotFoundException, SQLException {
 		table="house";
+		id=4;
 		ArrayList house_values=new ArrayList();
 		ArrayList selector=new ArrayList();
 		house_values.add(id);
@@ -468,7 +487,7 @@ public class SellerOperations implements Operations {
 		}
 		catch(NumberFormatException e) {
 			System.out.println("please enter numbers only");
-			return selector(values);
+			selector(values);
 		}
 		
 		if(decide<=values.size()&&decide>0) {
@@ -487,6 +506,6 @@ public class SellerOperations implements Operations {
 	
 	public static void main(String[] args) throws ClassNotFoundException, SQLException {
 		SellerOperations so=new SellerOperations();
-		so.operate();
+		so.editProperty();
 	}
 }

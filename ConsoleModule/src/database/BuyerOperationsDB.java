@@ -3,11 +3,26 @@ package database;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Formatter;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Scanner;
 
-public class SellerOperationsDB extends Conections {
-	public static void readLand(int sellersID) throws SQLException, ClassNotFoundException {
+public class BuyerOperationsDB extends Conections {
+	static Scanner scan=new Scanner(System.in);
+
+	public static void main(String[] args) throws ClassNotFoundException, SQLException {
+		
+		//readLand("ch",10,10000,10,10000,"farm");
+	}
+	
+	public static void readLand(String location_regexp,int cost_start,int cost_end,int area_start,int area_end,String type_regexp) throws ClassNotFoundException, SQLException {
 		connect();
-		String query="SELECT * from land where sellersID="+sellersID+";";
+		String query="SELECT * FROM land WHERE "
+				+ "location REGEXP '"+location_regexp+"' "
+				+ "AND area BETWEEN "+area_start+" AND "+area_end+" "
+				+ "AND type REGEXP '"+type_regexp+"' "
+				+ "AND cost BETWEEN "+cost_start+" AND "+cost_end+" "
+				+ "AND availability='yes';";
 		rs=st.executeQuery(query);
 		Formatter fmt = new Formatter();
 		fmt.format("|%20s |%20s |%20s |%20s |%20s |%20s |%20s|\n" ,"landID","location","area","dtcp","type","availability","cost"); 
@@ -24,9 +39,17 @@ public class SellerOperationsDB extends Conections {
 		}
 		close(); 
 	}
-	public static void readHouse(int sellersID) throws SQLException, ClassNotFoundException {
+	public static void readHouse(String location_regexp,int area_start,int area_end,String type_regexp,String used_for_regexp,String applicable_for_regexp_,int bhk_count,int cost_start,int cost_end,String current_date) throws SQLException, ClassNotFoundException {
 		connect();
-		String query="SELECT * from house where sellersID="+sellersID+";";
+		String query="SELECT * from house where "
+				+ "location REGEXP '"+location_regexp+"' "
+				+ "AND area BETWEEN "+area_start+" AND "+area_end+" "
+				+ "AND type REGEXP '"+type_regexp+"' "
+				+ "AND used_for REGEXP '"+used_for_regexp+"' "
+				+ "AND applicable_for REGEXP '"+applicable_for_regexp_+"' "
+				+ "AND bhk_count ="+bhk_count+" "
+				+ "AND cost BETWEEN "+cost_start+" AND "+cost_end+" "
+				+ "AND available_from <= '"+current_date+"' ;";
 		rs=st.executeQuery(query);
 		Formatter fmt = new Formatter();
 		fmt.format("|%20s |%20s |%20s |%20s |%20s |%20s |%20s |%20s |%20s |%20s |%20s|\n" ,"HouseID","location","area","dtcp","type","Used For","Applicable for","Available from","No.Of.BHK","HighLights","Cost"); 
@@ -43,41 +66,11 @@ public class SellerOperationsDB extends Conections {
 		}
 		close(); 
 	}
-	
 	public static void makeLine(char pattern) throws SQLException, ClassNotFoundException {
 		int len=500;
 		for(int i=1;i<=len;i++) {
 			System.out.print(pattern);
 		}
-	}
-	public static ArrayList readRow(String Table,int id) throws ClassNotFoundException, SQLException {
-		connect();
-		ArrayList values=new ArrayList();
-		int col_count=CRUD.getColumnCount(Table);
-		String col_1=CRUD.getColumnNameByIndex(Table,1);
-		String query="select * from "+Table+" where "+col_1+"="+id+";";
-		rs=st.executeQuery(query);
-		rs.next();
-		for(int i=3;i<=col_count;i++) {
-			String value=rs.getString(i);
-			//System.out.println(getColumnNameByIndex(Table,i)+": "+value);
-			values.add(value);
-		}
-		return values;
-	}
-	public static ArrayList<Integer> getPropertyIDs(String Table,int sellerID) throws ClassNotFoundException, SQLException {
-		ArrayList<Integer> prop_id=new ArrayList<Integer>();
-		connect();
-		String query="select "+Table+"ID "+"from "+Table+" where sellersID="+sellerID+";";
-		rs=st.executeQuery(query);
-		while(rs.next()) {
-			prop_id.add(rs.getInt(1));
-		}
-		//System.out.println(prop_id);
-		return prop_id;
-	}
-	
-	public static void main(String[] args) throws ClassNotFoundException, SQLException {
-		getPropertyIDs("house",9);
+
 	}
 }
