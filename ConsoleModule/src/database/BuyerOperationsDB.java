@@ -10,12 +10,12 @@ import java.util.Scanner;
 public class BuyerOperationsDB extends Conections {
 	static Scanner scan=new Scanner(System.in);
 
-	public static void main(String[] args) throws ClassNotFoundException, SQLException {
+	public void main(String[] args) throws ClassNotFoundException, SQLException {
 		
 		//readLand("ch",10,10000,10,10000,"farm");
 	}
 	
-	public static void readLand(String location_regexp,int cost_start,int cost_end,int area_start,int area_end,String type_regexp) throws ClassNotFoundException, SQLException {
+	public void readLand(String location_regexp,int cost_start,int cost_end,int area_start,int area_end,String type_regexp) throws ClassNotFoundException, SQLException {
 		connect();
 		String query="SELECT * FROM land WHERE "
 				+ "location REGEXP '"+location_regexp+"' "
@@ -39,7 +39,7 @@ public class BuyerOperationsDB extends Conections {
 		}
 		close(); 
 	}
-	public static void readHouse(String location_regexp,int area_start,int area_end,String type_regexp,String used_for_regexp,String applicable_for_regexp_,int bhk_count,int cost_start,int cost_end,String current_date) throws SQLException, ClassNotFoundException {
+	public void readHouse(String location_regexp,int area_start,int area_end,String type_regexp,String used_for_regexp,String applicable_for_regexp_,int bhk_count,int cost_start,int cost_end,String current_date) throws SQLException, ClassNotFoundException {
 		connect();
 		String query="SELECT * from house where "
 				+ "location REGEXP '"+location_regexp+"' "
@@ -66,7 +66,7 @@ public class BuyerOperationsDB extends Conections {
 		}
 		close(); 
 	}
-	public static void makeLine(char pattern) throws SQLException, ClassNotFoundException {
+	private  void makeLine(char pattern) throws SQLException, ClassNotFoundException {
 		int len=500;
 		for(int i=1;i<=len;i++) {
 			System.out.print(pattern);

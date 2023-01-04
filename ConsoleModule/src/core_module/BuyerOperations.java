@@ -10,6 +10,7 @@ import java.util.Scanner;
 
 import database.BuyerOperationsDB;
 import database.CRUD;
+import database.RegisterDB;
 
 public class BuyerOperations implements Operations {
 
@@ -26,8 +27,7 @@ public class BuyerOperations implements Operations {
 		while(true) {
 			System.out.println("1->View/Edit Profile"
 					   + "\n2->Show And Buy Properties"
-					   + "\n4->Show Mails"
-					   + "\n5->View Transactions"
+					   + "\n3->Show Mails"
 					   + "\n0->back");
 			num=scan.next();
 			try {
@@ -46,12 +46,6 @@ public class BuyerOperations implements Operations {
 			else if(n==3){
 				
 			}
-			else if(n==4){
-				
-			}
-			else if(n==5){
-				
-			}
 			else if(n==0){
 				break;
 			}
@@ -62,9 +56,10 @@ public class BuyerOperations implements Operations {
 	}
 
 
-	private void editProfile() throws ClassNotFoundException, SQLException {
+	private  void editProfile() throws ClassNotFoundException, SQLException {
 		table="buyers";
 		//id=Login.id;
+		//id=1;
 		String num="";int n=0;
 		while(true) {
 			System.out.println("\n1->view"
@@ -82,7 +77,7 @@ public class BuyerOperations implements Operations {
 				ArrayList details=CRUD.readRow(table,id);
 				//System.out.println(details);
 				for(int i=0;i<details.size();i++) {
-					System.out.println(i+1+")"+CRUD.getColumnNameByIndex("sellers",i+2)
+					System.out.println(i+1+")"+CRUD.getColumnNameByIndex("buyers",i+2)
 					+": "+details.get(i));	
 				}
 			}
@@ -112,6 +107,13 @@ public class BuyerOperations implements Operations {
 					else{
 						System.out.println("Enter new value");
 						String new_value=scan.next();
+						if(n1==1) {
+							while(RegisterDB.checkRegister(new_value, table)) {
+								System.out.println("This email already exists");
+								System.out.println("Enter new value");
+								new_value=scan.next();
+							}
+						}
 						String col=CRUD.getColumnNameByIndex(table, n1+1);
 						CRUD.update(new_value,table,col,id);
 					}
@@ -151,8 +153,7 @@ public class BuyerOperations implements Operations {
 			}
 		}
 	}
-	
-	public static void landFilter() throws ClassNotFoundException, SQLException {
+	private void landFilter() throws ClassNotFoundException, SQLException {
 		HashMap<String, ArrayList<String>> filters = new HashMap<String, ArrayList<String>>();
 		ArrayList location=new ArrayList();
 		location.add("ch");
@@ -231,7 +232,7 @@ public class BuyerOperations implements Operations {
 		bodb.readLand(location_regexp, cost_start, cost_end, area_start, area_end, type_regexp);	
 	}
 	
-	public static void houseFilter() throws ClassNotFoundException, SQLException {
+	 private void houseFilter() throws ClassNotFoundException, SQLException {
 		HashMap<String, ArrayList<String>> filters = new HashMap<String, ArrayList<String>>();
 		ArrayList location=new ArrayList();
 		location.add("ch");
@@ -358,7 +359,7 @@ public class BuyerOperations implements Operations {
 	}	
 	
 	
-	private static String regexpResult(HashMap<String, ArrayList<String>> filters,String param,String print) {
+	private String regexpResult(HashMap<String, ArrayList<String>> filters,String param,String print) {
 		HashSet temp=new HashSet<>();
 		String regexp="";
 		while(true) {
@@ -398,7 +399,7 @@ public class BuyerOperations implements Operations {
 		
 		return regexp;
 	}
-	private static  String selector(ArrayList values) {
+	private  String selector(ArrayList values) {
 		String select="";
 		int decide=0;
 		String num=scan.next();
@@ -420,7 +421,6 @@ public class BuyerOperations implements Operations {
 		}System.out.println("Please select Given numbers");
 		return "";
 	}
-//	public static void main(String[] args) throws ClassNotFoundException, SQLException {
-//		houseFilter();
-//	}
+	public static void main(String[] args) throws ClassNotFoundException, SQLException {
+	}
 }

@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Formatter;
 
 public class SellerOperationsDB extends Conections {
-	public static void readLand(int sellersID) throws SQLException, ClassNotFoundException {
+	public void readLand(int sellersID) throws SQLException, ClassNotFoundException {
 		connect();
 		String query="SELECT * from land where sellersID="+sellersID+";";
 		rs=st.executeQuery(query);
@@ -24,7 +24,7 @@ public class SellerOperationsDB extends Conections {
 		}
 		close(); 
 	}
-	public static void readHouse(int sellersID) throws SQLException, ClassNotFoundException {
+	public void readHouse(int sellersID) throws SQLException, ClassNotFoundException {
 		connect();
 		String query="SELECT * from house where sellersID="+sellersID+";";
 		rs=st.executeQuery(query);
@@ -44,13 +44,13 @@ public class SellerOperationsDB extends Conections {
 		close(); 
 	}
 	
-	public static void makeLine(char pattern) throws SQLException, ClassNotFoundException {
+	private  void makeLine(char pattern) throws SQLException, ClassNotFoundException {
 		int len=500;
 		for(int i=1;i<=len;i++) {
 			System.out.print(pattern);
 		}
 	}
-	public static ArrayList readRow(String Table,int id) throws ClassNotFoundException, SQLException {
+	public ArrayList readRow(String Table,int id) throws ClassNotFoundException, SQLException {
 		connect();
 		ArrayList values=new ArrayList();
 		int col_count=CRUD.getColumnCount(Table);
@@ -65,7 +65,7 @@ public class SellerOperationsDB extends Conections {
 		}
 		return values;
 	}
-	public static ArrayList<Integer> getPropertyIDs(String Table,int sellerID) throws ClassNotFoundException, SQLException {
+	public ArrayList<Integer> getPropertyIDs(String Table,int sellerID) throws ClassNotFoundException, SQLException {
 		ArrayList<Integer> prop_id=new ArrayList<Integer>();
 		connect();
 		String query="select "+Table+"ID "+"from "+Table+" where sellersID="+sellerID+";";
@@ -78,6 +78,6 @@ public class SellerOperationsDB extends Conections {
 	}
 	
 	public static void main(String[] args) throws ClassNotFoundException, SQLException {
-		getPropertyIDs("house",9);
+		
 	}
 }

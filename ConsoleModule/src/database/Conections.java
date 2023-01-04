@@ -15,7 +15,7 @@ public class Conections {
 	static PreparedStatement pst;
 	static ResultSet rs;
 	
-	public static void connect() throws ClassNotFoundException, SQLException  {
+	static void connect() throws ClassNotFoundException, SQLException  {
 		String url="jdbc:mysql://localhost:3306/module";
 		String user="root";
 		String password="992000";
@@ -27,7 +27,7 @@ public class Conections {
 	}
 	
 	
-	public static void close() throws SQLException  {
+	static void close() throws SQLException  {
 		st.close();
 		con.close();
 	}

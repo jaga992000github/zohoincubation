@@ -8,6 +8,7 @@ public class Login {
 	static int id;
 	public static void login() throws ClassNotFoundException, SQLException {
 		Scanner scan=new Scanner(System.in);
+		LoginDB ldb=new LoginDB();
 		System.out.println("Enter email");
 		String email=scan.next();
 		System.out.println("Enter password");
@@ -20,20 +21,20 @@ public class Login {
 				login();
 			}
 		}else if(user_type.equals("buyers")) {
-			if(LoginDB.authenticate(table, email, pass)) {
-				System.out.println("Welcome "+LoginDB.GetName(table, email));
+			if(ldb.authenticate(table, email, pass)) {
+				System.out.println("Welcome "+ldb.GetName(table, email));
 			 BuyerOperations bo =new  BuyerOperations() ;
-			 id=LoginDB.GetId(table, email);
+			 id=ldb.GetId(table, email);
 			 bo.operate();
 			}else {
 				System.out.println("Wrong email or password");
 				login();
 			}
 		}else if(user_type.equals("sellers")) {
-			if(LoginDB.authenticate(table, email, pass)) {
-				System.out.println("Welcome "+LoginDB.GetName(table, email));
+			if(ldb.authenticate(table, email, pass)) {
+				System.out.println("Welcome "+ldb.GetName(table, email));
 			 SellerOperations so =new  SellerOperations() ;
-			 id=LoginDB.GetId(table, email);
+			 id=ldb.GetId(table, email);
 			 so.operate();
 			}else {
 				System.out.println("Wrong email or password");

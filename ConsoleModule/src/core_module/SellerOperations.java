@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 import database.CRUD;
+import database.RegisterDB;
 import database.SellerOperationsDB;
 
 public class SellerOperations implements Operations {
@@ -23,7 +24,6 @@ public class SellerOperations implements Operations {
 					   + "\n2->Add Property"
 					   + "\n3->View/Edit Property"
 					   + "\n4->Show Mails"
-					   + "\n5->View Transactions"
 					   + "\n0->back");
 			num=scan.next();
 			try {
@@ -43,9 +43,6 @@ public class SellerOperations implements Operations {
 				editProperty();
 			}
 			else if(n==4){
-				
-			}
-			else if(n==5){
 				
 			}
 			else if(n==0){
@@ -108,6 +105,13 @@ public class SellerOperations implements Operations {
 					else{
 						System.out.println("Enter new value");
 						String new_value=scan.next();
+						if(n1==1) {
+							while(RegisterDB.checkRegister(new_value, table)) {
+								System.out.println("This email already exists");
+								System.out.println("Enter new value");
+								new_value=scan.next();
+							}
+						}
 						String col=CRUD.getColumnNameByIndex(table, n1+1);
 						CRUD.update(new_value,table,col,id);
 					}
