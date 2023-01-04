@@ -7,9 +7,10 @@ import model.CRUD;
 public class AdminOperations implements Operations {
 	static Scanner scan =new Scanner(System.in);
 	static AdminOperationsDB aodb=new AdminOperationsDB();
-	static AdminOperations ao=new AdminOperations();
+	
 	@Override
 	public void operate() throws ClassNotFoundException, SQLException {
+		AdminOperations ao=new AdminOperations();
 		String num="";int n=0;
 		while(true) {
 			System.out.println("1->View/Remove Buyers"
@@ -254,12 +255,5 @@ public class AdminOperations implements Operations {
 				break;
 			}
 		}
-	}
-	
-	public static void main(String[] args) throws ClassNotFoundException, SQLException {
-		
-		//ao.VOR_Land();
-		//ao.VOR_Sellers();
-		ao.operate();
 	}
 }
