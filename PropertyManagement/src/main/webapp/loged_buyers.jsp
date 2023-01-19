@@ -7,14 +7,14 @@
 <title>Insert title here</title>
 </head>
 <body>
-<%/*String email=session.getAttribute("email").toString();
+<%String email=session.getAttribute("email").toString();
 String Table=session.getAttribute("UserType").toString();
 if(email==null){
 	response.sendRedirect("login.html");
 }else{
 	String user=db.DBC.GetName(Table, email);
 	String welcome="Welcome "+user;
-}*/
+}
 %>
 
 

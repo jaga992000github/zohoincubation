@@ -12,6 +12,15 @@
 <title>Insert title here</title>
 </head>
 <body>
+<%String email=session.getAttribute("email").toString();
+String Table=session.getAttribute("UserType").toString();
+if(email==null){
+	response.sendRedirect("login.html");
+}else{
+	String user=db.DBC.GetName(Table, email);
+	String welcome="Welcome "+user;
+}
+%>
  <ul>
     <li class="navigate-li"><a href="edit_properties.jsp"><button id="show/edit" class="libutton-button">Show/Edit</button></li>
     <li class="navigate-li"><button id="addprop_button"  class="actlibutton-button">Add property</button></li>

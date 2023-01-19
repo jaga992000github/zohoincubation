@@ -41,6 +41,6 @@ public class DBC2 extends DBC {
 	}
 	
 	public static void main(String[] args) throws ClassNotFoundException, SQLException {
-		System.out.println(PropertyDisplay(9,"land"));
+		System.out.println(PropertyDisplay(9,"house"));
 	}
 }

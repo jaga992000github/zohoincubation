@@ -85,7 +85,7 @@ public class DBC {
 	}
 	public static int GetId(String Table,String email) throws ClassNotFoundException, SQLException {
 		connect();
-		String query="select id from "+Table+" WHERE email='"+email+"';";
+		String query="select "+Table+"ID from "+Table+" WHERE email='"+email+"';";
 		rs=st.executeQuery(query);
 		rs.next();
 		int id=rs.getInt(1);
