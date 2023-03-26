@@ -11,10 +11,14 @@ public class Passenger {
 	private int ph_no;
 	private String email;
 	private Seat seat;
+	private String class_type;
+	private String coach_id;
 	private int pnr_no;
 	private String booked_status;
 	private char preferd_birth;
+	private int waiting_list_no;
 	
+
 	public Passenger (HashMap<String, Object> passenger_instances) {
 		this.name=(String) passenger_instances.get("name");
 		this.age=(int) passenger_instances.get("age");
@@ -25,8 +29,9 @@ public class Passenger {
 			this.seat=(Seat) passenger_instances.get("seat");
 			this.setPreferd_birth((char) passenger_instances.get("preferd_birth"));
 		}
-		this.pnr_no=(int) passenger_instances.get("pnr_no");
-		this.booked_status=(String) passenger_instances.get("booked_status");
+		this.pnr_no=0;
+		this.booked_status="";
+		this.seat=null;
 	}
 	
 	@Override
@@ -37,9 +42,16 @@ public class Passenger {
 			+ "\n-Age:"+this.age
 			+ "\n-Gender:"+this.gender
 			+ "\n-Booking status:"+this.booked_status;
+			
 	if(this.booked_status.equals("confirm")||this.booked_status.equals("RAC")) {
-		str+=this.seat;
+		str+="\n-Class:"+this.class_type
+				+"\n-Coach ID:"+this.coach_id
+				+"\n-Seat:"+this.seat;
 	}
+	else if(this.booked_status.equals("waiting_list")) {
+		str+=" no: "+this.waiting_list_no;
+	}
+	str+="\n\n";
 	return str;	
 	}
 	
@@ -100,6 +112,29 @@ public class Passenger {
 
 	public void setPreferd_birth(char preferd_birth) {
 		this.preferd_birth = preferd_birth;
+	}
+	public String getClass_type() {
+		return class_type;
+	}
+
+	public void setClass_type(String class_type) {
+		this.class_type = class_type;
+	}
+
+	public String getCoach_id() {
+		return coach_id;
+	}
+
+	public void setCoach_id(String coach_id) {
+		this.coach_id = coach_id;
+	}
+	
+	public int getWaiting_list_no() {
+		return waiting_list_no;
+	}
+
+	public void setWaiting_list_no(int waiting_list_no) {
+		this.waiting_list_no = waiting_list_no;
 	}
 	
 }

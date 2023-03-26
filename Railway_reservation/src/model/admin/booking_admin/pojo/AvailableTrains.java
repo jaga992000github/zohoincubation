@@ -1,5 +1,6 @@
 package model.admin.booking_admin.pojo;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -15,12 +16,7 @@ public class AvailableTrains {
 
 	public void addTrain(HashMap<String,Object> train_instances) {
 		Train train=new Train(train_instances);
-		LinkedList<Stop> train_route=train.getTrain_route();
-		HashMap<String,Stop>search_route=new HashMap<String,Stop>();
-		for(Stop stop:train_route) {
-			String stop_name=stop.getName();
-			search_route.put(stop_name, stop);
-		}
+		HashMap<String,Stop>search_route=train.getStop_map();
 		AvailableTrains.available_trains.put(search_route, train);
 		AvailableTrains.search_route_list.add(search_route);
 	}
@@ -32,27 +28,26 @@ public class AvailableTrains {
 			Stop to_stop=search_route.get(to_stop_name);
 			if(from_stop!=null&&to_stop!=null&&from_stop.getKm_from_start() < to_stop.getKm_from_start()){
 				Train train =available_trains.get(search_route);
-				train.setPassenger_stop_starting_stop(from_stop);
-				train.setPassenger_stop_reaching_stop(to_stop);
+				train.setPassengerRoute(from_stop, to_stop);
 				route_matched_trains.add(train);
 			}
 		}
 		return route_matched_trains;
 	}
 	
-	private ArrayList<Train> searchTrainsByTime(ArrayList<Train> route_matched_trains,LocalDateTime dateTime){
+	private ArrayList<Train> searchTrainsByTime(ArrayList<Train> route_matched_trains,LocalDate date){
 		ArrayList<Train> time_matched_trains=new ArrayList<Train>();
 		for(Train train:route_matched_trains) {
-			if((dateTime.toLocalDate()).equals(train.getTrain_starting_time().toLocalDate())) {
+			if((date).equals(train.getTrain_starting_time().toLocalDate())) {
 				time_matched_trains.add(train);
 			}
 		}
 		return time_matched_trains;
 	}
 	
-	public ArrayList<Train> searchTrains(String from_stop_name,String to_stop_name,LocalDateTime dateTime){
+	public ArrayList<Train> searchTrains(String from_stop_name,String to_stop_name,LocalDate date){
 		ArrayList<Train> route_matched_trains=searchTrainsByRoute(from_stop_name, to_stop_name);
-		return searchTrainsByTime(route_matched_trains, dateTime);
+		return searchTrainsByTime(route_matched_trains, date);
 	}
 	
 	public static HashMap<HashMap<String, Stop>, Train> getAvailable_trains() {
