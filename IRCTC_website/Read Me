@@ -1,0 +1,11 @@
+* In this Project I have Created A Entire IRCTC Console Module.
+* It can be put into multiThreaded Environment.
+* Here Admin can Create,Read,deleate and update available trains;
+and User can book see status of booking,cancel tickets.
+* It mostly reflect Object to Object Communications such as,
+->If you change the seat retio It will automatically change seats by seat no,birth position,and sitting position.
+->If you give the starting time of first stop ,It will automatically allocate the remaining stop timing.
+* Im curretly develop an railway routing Interface using graphs and dfs to my project.
+* Im using static variable instead of ORM to store data.
+* Im currently changed the console module into database Using Hibernate.
+* Later the View Part will be changed to GUI(front end).
