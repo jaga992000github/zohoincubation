@@ -1,0 +1,4 @@
+In this Project I have Created a ORM tool with JDBC,core JAVA and Mysql Schema Queries.
+It can perform crud operationswit java
+It need not to mapping just implementation of an connection only so its avoid cache
+Later It will be developed to put json directly to the database
